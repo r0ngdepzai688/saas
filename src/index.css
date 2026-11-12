@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-warm-canvas: #FAF6EE;
+    --text-primary: #251F19;
+    --text-secondary: #5A4F42;
+    --text-muted: #8A7B6B;
+    --border-glass: rgba(229, 220, 206, 0.65);
+    --border-glass-highlight: rgba(255, 255, 255, 0.85);
+  }
+
+  body {
+    background-color: var(--bg-warm-canvas);
+    color: var(--text-primary);
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(243, 210, 200, 0.35) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(249, 222, 170, 0.35) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(235, 228, 216, 0.45) 0px, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Warm Glassmorphism Panel */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-warm-200/60 shadow-glass-md rounded-2xl relative overflow-hidden transition-all duration-300;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+  }
+
+  .glass-card-hover {
+    @apply hover:bg-white/85 hover:border-terracotta-200/60 hover:shadow-glass-hover hover:-translate-y-0.5;
+  }
+
+  /* Glass Sidebar */
+  .glass-sidebar {
+    @apply bg-warm-100/75 backdrop-blur-2xl border-r border-warm-300/50 shadow-glass-sm;
+  }
+
+  /* Glass Header */
+  .glass-header {
+    @apply bg-warm-50/80 backdrop-blur-xl border-b border-warm-200/70 shadow-glass-sm sticky top-0 z-30;
+  }
+
+  /* Glass Pill / Badge */
+  .glass-badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold backdrop-blur-md border border-white/60 shadow-sm;
+  }
+
+  /* Glass Button Primary */
+  .glass-btn-primary {
+    @apply relative inline-flex items-center justify-center font-medium rounded-xl px-4 py-2.5 
+           bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white 
+           shadow-terracotta-glow hover:from-terracotta-600 hover:to-terracotta-700 
+           active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-terracotta-400 focus:ring-offset-2 focus:ring-offset-warm-100;
+  }
+
+  /* Glass Button Secondary */
+  .glass-btn-secondary {
+    @apply inline-flex items-center justify-center font-medium rounded-xl px-4 py-2.5 
+           bg-white/60 hover:bg-white/90 text-warm-800 border border-warm-300/70 backdrop-blur-md 
+           shadow-glass-sm hover:shadow-glass-md active:scale-95 transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-terracotta-300;
+  }
+
+  /* Glass Input */
+  .glass-input {
+    @apply w-full rounded-xl bg-white/50 backdrop-blur-md border border-warm-300/60 px-4 py-2 text-sm text-warm-900 
+           placeholder:text-warm-500 focus:bg-white/90 focus:border-terracotta-400 focus:ring-2 focus:ring-terracotta-300/40 
+           transition-all duration-200 outline-none shadow-glass-sm;
+  }
+}
+
+/* Custom Warm Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(163, 150, 132, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(163, 150, 132, 0.6);
+}
+
+/* Accessibility: Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
